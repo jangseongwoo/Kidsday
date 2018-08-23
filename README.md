@@ -1,15 +1,14 @@
 <h1 align="center">
 <br>
 <img src="images/logo.png" alt="Kidsday" width="240" height="66">
-<br>
-Kidsday
-<br>
 </h1>
 
 <h4 align="center">Nodejs, javascript_  를 이용해 안드로이드 앱 서버를 제작한 프로젝트입니다.</h4>
 
+<p align = "center">
 [![GitHub license](https://img.shields.io/github/license/Day8/re-frame.svg)](license.txt)
-
+[![npm-image]]
+</p>
 
 
 ## 프로젝트 설명
