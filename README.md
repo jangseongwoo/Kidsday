@@ -3,13 +3,11 @@
 <img src="images/logo.png" alt="Kidsday" width="240" height="66">
 </h1>
 
-<h4 align="center">Nodejs, javascript_  를 이용해 안드로이드 앱 서버를 제작한 프로젝트입니다.</h4>
+<h4 align="center">Nodejs, javascript 를 이용해 안드로이드 앱 서버를 제작한 프로젝트입니다.</h4>
 
 <p align = "center">
 
-[![GitHub license](https://img.shields.io/github/license/Day8/re-frame.svg)](license.txt)
-
-[![npm-image]]
+[![GitHub license](https://img.shields.io/github/license/Day8/re-frame.svg)](license.txt) ![npm-image]
 
 </p>
 
@@ -20,7 +18,8 @@ SK 테크엑스 _'T아카데미'_ 에서 진행한 프로젝트입니다.<br>
 기획자 1명, 안드로이드 개발자 2명, 서버 개발자 1명, 디자이너 2명이 한 팀을 이뤄 3개월동안 작업한 프로젝트이며 저는 서버 개발 및 기획으로 참여했습니다.
 
 <h1 align="center">
-<img src="images/intro.png" alt="intro" width="600" height="300">
+<img src="images/intro.png" alt="intro" width="300" height="600">
+<img src="images/intro1.png" alt="intro" width="300" height="600">
 </h1>
 
 
