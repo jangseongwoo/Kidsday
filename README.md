@@ -138,7 +138,7 @@ $ npm start
 
 ## 정보 및 라이센스
 
-프로젝트에 대한 더 자세한 정보를 원하신다면,  2dgame 폴더 내에 있는 _SDL_보고서.pptx_ 를 참조해주세요.
+프로젝트에 대한 더 자세한 정보를 원하신다면, 아래에 있는 메일주소로 메일을 보내주세요.
 
 장성우 – [@facebook](https://www.facebook.com/profile.php?id=100007028118707&ref=bookmarks) – seongwoo.dev@gmail.com
 
