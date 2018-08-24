@@ -15,12 +15,12 @@
 ## 프로젝트 설명
 
 SK 테크엑스 _'T아카데미'_ 에서 진행한 프로젝트입니다.<br>
-기획자 1명, 안드로이드 개발자 2명, 서버 개발자 1명, 디자이너 2명이 한 팀을 이뤄 3개월동안 작업한 프로젝트이며 저는 서버 개발 및 기획으로 참여했습니다.
+상용화를 목표로 기획자 1명, 안드로이드 개발자 2명, 서버 개발자 1명, 디자이너 2명이 한 팀을 이뤄 3개월동안 작업한 프로젝트이며 저는 서버 개발 및 기획으로 참여했습니다.
 
 <h1 align="center">
-<img src="images/intro.png" alt="intro" width="300" height="600">
-<img src="images/intro1.png" alt="intro" width="300" height="600">
-<img src="images/intro2.png" alt="intro" width="300" height="600">
+<img src="images/intro.png" alt="intro" width="300" height="500">
+<img src="images/intro1.png" alt="intro" width="300" height="500">
+<img src="images/intro2.png" alt="intro" width="250" height="500">
 </h1>
 
 
@@ -31,12 +31,12 @@ SK 테크엑스 _'T아카데미'_ 에서 진행한 프로젝트입니다.<br>
 </h1>
 
 
-## 구현 내용
+## 기술 요소
 
 ### 서버 구성
 
 <h1 align="center">
-<img src="images/server architecture.png" alt="intro" width="800" height="450">
+<img src="images/DBTable.png" alt="intro" width="600" height="350">
 </h1>
 
 ### DB
@@ -75,7 +75,8 @@ module.exports.childs = childs;
 
 ### Npm Sequelize / query
 
-* 관계형 데이터베이스를 다루는 방법으로 ORM이라는 툴이 있다. <br>객체와 모델의 매핑으로, SQL 구문 대신 객체를 다루는 방식으로 데이터베이스에 반영되는데, Node.js에서는 Sequelize라는 툴을 사용한다. 
+* 관계형 데이터베이스를 다루는 방법으로 ORM이라는 툴이 있다. <br>
+객체와 모델의 매핑으로, SQL 구문 대신 객체를 다루는 방식으로 데이터베이스에 반영되는데, Node.js에서는 Sequelize라는 툴을 사용한다. 
 
 * Sequelize 의 단점은 레퍼런스가 DBMS Query 보다 적다.
 
@@ -84,6 +85,29 @@ module.exports.childs = childs;
 * 간단한 요청과 응답에는 Sequelize가 적합하나 복잡해지면 복잡해질수록 생산성이 하락
 
 * 프로젝트 초기 All Sequelize 가면 갈 수록 Query 이용해 코드 작성했음.
+
+### callback hell
+* 콜백 헬을 해결하기 위해 Async 모듈을 활용해 프로그래밍 했습니다.
+```sh
+// UserRouter의 sendUserInfo 함수
+
+async function sendUserInfo(req, res, next) {
+    console.log('sendUserInfo 시작합니다.');
+    let result;
+    try {
+        console.log(req.params.userId);
+        result = await Users.findOne({
+        where: { userId: req.params.userId }
+    });
+        res.send(result);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(404).send(error);
+    }
+}
+
+```
 
 
 
