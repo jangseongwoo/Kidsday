@@ -36,7 +36,7 @@ SK 테크엑스 _'T아카데미'_ 에서 진행한 프로젝트입니다.<br>
 ### 서버 구성
 
 <h1 align="center">
-<img src="images/DBTable.png" alt="intro" width="600" height="350">
+<img src="images/server architecture.png" alt="intro" width="600" height="350">
 </h1>
 
 ### DB
@@ -47,7 +47,7 @@ SK 테크엑스 _'T아카데미'_ 에서 진행한 프로젝트입니다.<br>
 * DB 설계
     - 생각보다 많은 데이터 테이블, 여러 관계들을 놓치지 않기 위해서 큰 줄기(Users, Programs, Teachers)를 먼저 만든 후 테이블 간의 관계를 정립해 확장시켜 설계.
     <h1 align="center">
-    <img src="images/server architecture.png" alt="intro" width="400" height="150">
+    <img src="images/DBTable.png" alt="intro" width="400" height="150">
     </h1>
 
 * ERR Diagram 모델링을 먼저 해 효율적인 개발과 Sequelize를 통해 DB define 및 sync.
@@ -56,7 +56,7 @@ SK 테크엑스 _'T아카데미'_ 에서 진행한 프로젝트입니다.<br>
 </h1>
 
 ```sh
-//child model sequelize define
+# child model sequelize define
 
 const Sequelize = require('sequelize');
 const sequelize = require('./dbConnect');
@@ -86,10 +86,12 @@ module.exports.childs = childs;
 
 * 프로젝트 초기 All Sequelize 가면 갈 수록 Query 이용해 코드 작성했음.
 
-### callback hell
+### Nodejs
+* 선택 이유: 
+
 * 콜백 헬을 해결하기 위해 Async 모듈을 활용해 프로그래밍 했습니다.
 ```sh
-// UserRouter의 sendUserInfo 함수
+# UserRouter의 sendUserInfo 함수
 
 async function sendUserInfo(req, res, next) {
     console.log('sendUserInfo 시작합니다.');
@@ -99,7 +101,7 @@ async function sendUserInfo(req, res, next) {
         result = await Users.findOne({
         where: { userId: req.params.userId }
     });
-        res.send(result);
+    res.send(result);
     }
     catch (error) {
         console.log(error);
@@ -137,25 +139,26 @@ async function sendUserInfo(req, res, next) {
 
 1. [git clone](https://github.com/jangseongwoo/Kidsday.git) 을 하세요.
 ```sh
-git clone https://github.com/jangseongwoo/Kidsday.git
-```
+# Clone this repository
+$ git clone https://github.com/jangseongwoo/Kidsday.git
 
-2. 터미널을 열어 해당 폴더에 간 후 npm install 명령어를 입력해주세요.
-```sh
-npm install
-```
+# Go into the repository
+$ cd Kidsday
 
-3. 
-```sh
-npm start
+# Install dependencies
+$ npm install
+
+# Run the app
+$ npm start
 ```
 
 ## 개발 환경
 
-- 사용 OS : 윈도우7 64bit
-- 개발 툴 : Visual Studio 2013
+- 사용 OS : Mac OS 시에라
+- 개발 툴 : Visual Studio Code
+- AWS
 
-## 정보
+## 정보 및 라이센스
 
 프로젝트에 대한 더 자세한 정보를 원하신다면,  2dgame 폴더 내에 있는 _SDL_보고서.pptx_ 를 참조해주세요.
 
