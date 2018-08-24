@@ -20,53 +20,71 @@ SK 테크엑스 _'T아카데미'_ 에서 진행한 프로젝트입니다.<br>
 <h1 align="center">
 <img src="images/intro.png" alt="intro" width="300" height="600">
 <img src="images/intro1.png" alt="intro" width="300" height="600">
+<img src="images/intro2.png" alt="intro" width="300" height="600">
 </h1>
 
 
-## 게임 설명
-- 게임 요약: 이 게임은 여러 종류의 캐릭터들이 나와 성을 지키며 싸우는 디펜스 게임입니다. 선과 악의 대립구조로 공중 유닛과 지상 유닛으로 구성되며 유닛들은 중세부터 현대까지 다양한 유닛들이 출현합니다. 
+## 서비스 설명
 
-- 게임 장르 : 액션 게임.
+<h1 align="center">
+<img src="images/serviceInfo.png" alt="intro" width="800" height="450">
+</h1>
 
-- 게임 방식 : 자동으로 생성되는 자원을 통해 유닛을 뽑아 싸우는 배틀 
-
-- 게임 목표 : 상대방 타워를 파괴하면 승리.
 
 ## 구현 내용
 
-### 구조
-- GameEngine Class를 이용해 구조를 Game start - play - ending으로 나눠 개발했습니다.
-<br> state 별로 update() , draw(), handleEvents() 함수가 있어 개발 및 유지보수가 용이하도록 개발했습니다.
+### 서버 구성
+
+<h1 align="center">
+<img src="images/server architecture.png" alt="intro" width="800" height="450">
+</h1>
+
+### DB
+
+* DB 선택 : MySQL
+    - 정형화된 데이터들이 많기 때문에 RDBMS 선택.
+
+* DB 설계
+    - 생각보다 많은 데이터 테이블, 여러 관계들을 놓치지 않기 위해서 큰 줄기(Users, Programs, Teachers)를 먼저 만든 후 테이블 간의 관계를 정립해 확장시켜 설계.
+    <h1 align="center">
+    <img src="images/server architecture.png" alt="intro" width="400" height="150">
+    </h1>
+
+* ERR Diagram 모델링을 먼저 해 효율적인 개발과 Sequelize를 통해 DB define 및 sync.
+<h1 align="center">
+<img src="images/err.png" alt="intro" width="850" height="550">
+</h1>
+
 ```sh
-class GameEngine
-{
-public:
+//child model sequelize define
 
-void init(const char* title, int width=480, int height=272, bool fullscreen=false);
-void cleanup(void);
+const Sequelize = require('sequelize');
+const sequelize = require('./dbConnect');
 
-void changeState(GameState* state);
-void pushState(GameState* state);
-void popState(void);
 
-void handleEvents(void);
-void update(void);
-void draw(void);
+const childs = sequelize.define('childs', {
+childId: { type: Sequelize.INTEGER, primaryKey: true, autoIncreament: true },
+userId: Sequelize.INTEGER,
+birthday: Sequelize.STRING(50),
+gender: Sequelize.STRING(50)
+}, { timestamps: false });
 
-bool running() { return m_running; }
-void quit() { m_running = false; }
+module.exports.childs = childs;
 
-SDL_Window *window;
-SDL_Renderer *renderer;
-
-private:
-// the stack of states
-vector<GameState*> states;
-
-bool m_running;
-bool m_fullscreen;
-};
 ```
+
+### Npm Sequelize / query
+
+* 관계형 데이터베이스를 다루는 방법으로 ORM이라는 툴이 있다. <br>객체와 모델의 매핑으로, SQL 구문 대신 객체를 다루는 방식으로 데이터베이스에 반영되는데, Node.js에서는 Sequelize라는 툴을 사용한다. 
+
+* Sequelize 의 단점은 레퍼런스가 DBMS Query 보다 적다.
+
+* 다양한 테이블을 조인해 데이터를 전달할 경우 쿼리보다 더 복잡해져 가독성과 생산성이 하락함.
+
+* 간단한 요청과 응답에는 Sequelize가 적합하나 복잡해지면 복잡해질수록 생산성이 하락
+
+* 프로젝트 초기 All Sequelize 가면 갈 수록 Query 이용해 코드 작성했음.
+
 
 
 ### 구현요소 (구현율)
@@ -93,14 +111,20 @@ bool m_fullscreen;
 ## 실행 방법
 
 
-1. [git clone](https://github.com/jangseongwoo/2dGame-C-SDL.git) 을 하세요.
+1. [git clone](https://github.com/jangseongwoo/Kidsday.git) 을 하세요.
 ```sh
-git clone https://github.com/jangseongwoo/2dGame-C-SDL.git
+git clone https://github.com/jangseongwoo/Kidsday.git
 ```
 
-2. Visual studio의 프로젝트 열기로  2dgame  _프로젝트소스_ 폴더를 열어주세요.
+2. 터미널을 열어 해당 폴더에 간 후 npm install 명령어를 입력해주세요.
+```sh
+npm install
+```
 
-3. Visual studio로 프로젝트를 컴파일 및 빌드 해주시면 실행됩니다.
+3. 
+```sh
+npm start
+```
 
 ## 개발 환경
 
