@@ -39,6 +39,35 @@ SK 테크엑스 _'T아카데미'_ 에서 진행한 프로젝트입니다.<br>
 <img src="images/server architecture.png" alt="intro" width="600" height="350">
 </h1>
 
+### Node.js
+
+* 선택 이유
+    - 상용화를 목표로 짧은 시간 내에 개발하기 위해 생산성 높은 프레임 워크가 필요
+    - Node.js는 싱글 쓰레드로 프로그램 작성이 간단하며 간단한 구조의 경량 프레임워크
+    - 필요한 기능은 모듈에서 대부분 찾을 수 있음
+
+* 콜백 헬을 해결하기 위해 async/await 활용하고 에러 처리는 try/catch를 활용해서 프로그래밍 했습니다.
+```sh
+# UserRouter의 sendUserInfo 함수
+
+async function sendUserInfo(req, res, next) {
+    console.log('sendUserInfo 시작합니다.');
+    let result;
+    try {
+        console.log(req.params.userId);
+        result = await Users.findOne({
+        where: { userId: req.params.userId }
+        });
+        res.send(result);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(404).send(error);
+    }
+}
+
+```
+
 ### DB
 
 * DB 선택 : MySQL
@@ -46,10 +75,7 @@ SK 테크엑스 _'T아카데미'_ 에서 진행한 프로젝트입니다.<br>
 
 * DB 설계
     - 생각보다 많은 데이터 테이블, 여러 관계들을 놓치지 않기 위해서 큰 줄기(Users, Programs, Teachers)를 먼저 만든 후 테이블 간의 관계를 정립해 확장시켜 설계.
-    <h1 align="center">
-    <img src="images/DBTable.png" alt="intro" width="400" height="150">
-    </h1>
-
+    
 * ERR Diagram 모델링을 먼저 해 효율적인 개발과 Sequelize를 통해 DB define 및 sync.
 <h1 align="center">
 <img src="images/err.png" alt="intro" width="850" height="550">
@@ -86,58 +112,10 @@ module.exports.childs = childs;
 
 * 프로젝트 초기 All Sequelize 가면 갈 수록 Query 이용해 코드 작성했음.
 
-### Nodejs
-* 선택 이유: 
 
-* 콜백 헬을 해결하기 위해 Async 모듈을 활용해 프로그래밍 했습니다.
-```sh
-# UserRouter의 sendUserInfo 함수
-
-async function sendUserInfo(req, res, next) {
-    console.log('sendUserInfo 시작합니다.');
-    let result;
-    try {
-        console.log(req.params.userId);
-        result = await Users.findOne({
-        where: { userId: req.params.userId }
-    });
-    res.send(result);
-    }
-    catch (error) {
-        console.log(error);
-        res.status(404).send(error);
-    }
-}
-
-```
-
-
-
-### 구현요소 (구현율)
-
-- 컨트롤 (85%)
-<br> 키보드로 성의 화살을 움직여 각도 조절과 발사를 컨트롤, 키보드 숫자 키보드로 유닛 생성
-
-- 유닛 (100%) 
-<br> 아군 유닛 지상 4개 ,공중 4개
-적 유닛 지상 4개, 공중 4개
-
-- 맵 (100%)
-<br> 맵 정적인 배경, 각 오브젝트들 구현
-
-- 사운드 (100%)
-<br> 기본 BGM 1곡, 공격 효과음 4곡, 성의 화살 효과음 1곡 
-
-- 애니메이션 (90%)
-<br> 유닛 공격/이동 상태, 성 화살 공격, 마나/체력 수치 표시
-
-- 난이도 (100%)
-<br> 시간 제한, 적 성의 HP 10%이하일때 적 유닛 증가
 
 ## 실행 방법
 
-
-1. [git clone](https://github.com/jangseongwoo/Kidsday.git) 을 하세요.
 ```sh
 # Clone this repository
 $ git clone https://github.com/jangseongwoo/Kidsday.git
@@ -148,7 +126,7 @@ $ cd Kidsday
 # Install dependencies
 $ npm install
 
-# Run the app
+# Run the app server
 $ npm start
 ```
 
